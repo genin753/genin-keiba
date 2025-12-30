@@ -12,13 +12,9 @@ import Icon from "../bases/icon.astro";
       <aside class="flex items-center gap-2">
         <Hashtag />
         <p>
-          <strong class="text-lg">オルカン速報</strong>
+          <strong class="text-lg">オルカンアカデミー</strong>
           <br />
-          A news website built with <a
-            class="underline"
-            href="https://astro.build"
-            target="_blank">Astro</a
-          >.
+          投資初心者のための脳死投資講座
         </p>
       </aside>
       <nav
@@ -37,28 +33,6 @@ import Icon from "../bases/icon.astro";
     </div>
     <div class="divider w-full h-1"></div>
     <div class="flex flex-col gap-4">
-      <nav>
-        <div class="flex gap-4">
-          <p class="font-bold">Social Media:</p>
-          <ul class="flex flex-wrap gap-4">
-            {
-              SOCIAL_LINKS.map(({ href, icon, text, target }) => (
-                <li>
-                  <a
-                    href={href}
-                    class="link link-hover"
-                    target={target ?? "_blank"}
-                    title={text}
-                    aria-label={text}
-                  >
-                    <Icon icon={icon} />
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </nav>
       <nav class="flex flex-wrap gap-4 text-xs mt-2">
         {
           OTHER_LINKS.map(({ href, text, target }) => (

@@ -57,6 +57,8 @@ export function readingTime() {
   return (tree, { data }) => {
     const textOnPage = ConvertToString(tree);
     const readingTime = getReadingTime(textOnPage, { wordsPerMinute: 180 });
-    data.astro.frontmatter.minutesRead = readingTime.text;
+    // "11 min read" を "11分で読める" に変換
+    const minutes = Math.ceil(readingTime.minutes);
+    data.astro.frontmatter.minutesRead = `${minutes}分で読める`;
   };
 }

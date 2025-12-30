@@ -40,12 +40,12 @@ const [HEADER] = entry.data.blocks;
 ---
 
 <ListLayout
-  header={`${author.data.name}'s ${HEADER.title}`}
+  header={`${author.data.name}${HEADER.title}`}
   entry={{
     ...entry,
     data: {
       ...entry.data,
-      title: `${author.data.name}'s ${entry.data.title}`,
+      title: `${author.data.name}${entry.data.title}`,
     },
   }}
 >

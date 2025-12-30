@@ -18,10 +18,11 @@ const categoryMap = new Map(categories.map((cat) => [cat.id, cat.data.title]));
 const searchData = articles
   .filter((article) => !article.data.isDraft)
   .map((article) => {
-    const categoryId = typeof article.data.category === "string" 
-      ? article.data.category 
-      : article.data.category?.id;
-    
+    const categoryId =
+      typeof article.data.category === "string"
+        ? article.data.category
+        : article.data.category?.id;
+
     return {
       slug: article.slug,
       title: article.data.title,
@@ -38,7 +39,7 @@ const searchData = articles
       <input
         type="text"
         id="searchInput"
-        placeholder="Search articles..."
+        placeholder="記事を検索..."
         class="input input-bordered w-full"
         autocomplete="off"
       />
@@ -67,12 +68,12 @@ const searchData = articles
               <p class="text-xs text-primary">${article.category}</p>
               <div class="card-actions justify-end">
                 <a href="${article.url}" class="btn btn-primary btn-sm">
-                  Read More
+                  詳しく読む
                 </a>
               </div>
             </div>
           </div>
-        `
+        `,
           )
           .join("");
 

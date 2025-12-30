@@ -1,8 +1,8 @@
 import type { Link } from "../types";
 
 export const SITE = {
-  title: "オルカン速報",
-  description: "A news website built with Astro",
+  title: "オルカンアカデミー",
+  description: "投資初心者のための脳死投資講座",
   author: "Mohammad Rahmani",
   url: "https://genin753.github.io/",
   github: "https://github.com/genin753/genin753.github.io",
@@ -16,7 +16,7 @@ export const SITE = {
 export const NAVIGATION_LINKS: Link[] = [
   {
     href: "/categories/orkan-today",
-    text: "今日のオルカン",
+    text: "オルカン速報",
   },
   {
     href: "/categories/nisa-guide",

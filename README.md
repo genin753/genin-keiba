@@ -1,11 +1,11 @@
-# オルカン速報 📰
+# オルカンアカデミー �
 
-A news website built with Astro, designed to provide a modern and responsive news reading experience.
+投資初心者のための脳死投資講座
 
 > **ℹ️ Info**  
-> オルカン速報 is my first open-source project, so there may be some bugs or issues. I’ll address them as quickly as possible.
+> オルカンアカデミー is my first open-source project, so there may be some bugs or issues. I'll address them as quickly as possible.
 
-![オルカン速報](./src/assets/images/screenshot-astronews.png "オルカン速報")
+![オルカンアカデミー](./src/assets/images/screenshot-astronews.png "オルカンアカデミー")
 
 ![performances](./src/assets/images/Performances.png "Performances")
 

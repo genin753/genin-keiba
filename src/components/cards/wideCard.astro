@@ -18,7 +18,17 @@ const { article, isLast } = Astro.props;
   <div
     class="flex-shrink-0 aspect-square w-32 text-sm text-base-content/60 text-pretty capitalize hidden lg:flex pt-1"
   >
-    {getDateDistance(normalizeDate(article.data.publishedTime))}
+    {
+      (() => {
+        const date = article.data.publishedTime;
+        const dateStr = date instanceof Date ? date.toISOString() : date;
+        try {
+          return dateStr ? getDateDistance(dateStr) : "日付不明";
+        } catch {
+          return "日付不明";
+        }
+      })()
+    }
   </div>
   <div
     class:list={[
@@ -54,7 +64,17 @@ const { article, isLast } = Astro.props;
         datetime={normalizeDate(article.data.publishedTime)}
       >
         <span>
-          {getDateDistance(normalizeDate(article.data.publishedTime))}
+          {
+            (() => {
+              const date = article.data.publishedTime;
+              const dateStr = date instanceof Date ? date.toISOString() : date;
+              try {
+                return dateStr ? getDateDistance(dateStr) : "日付不明";
+              } catch {
+                return "日付不明";
+              }
+            })()
+          }
         </span>
       </time>
       <Divider />

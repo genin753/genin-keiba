@@ -7,7 +7,7 @@ export default config({
   },
   ui: {
     brand: {
-      name: "オルカン速報",
+      name: "オルカンアカデミー",
     },
     navigation: ["---", "articles", "---", "authors", "categories"],
   },
