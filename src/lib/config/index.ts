@@ -62,11 +62,11 @@ export const OTHER_LINKS: Link[] = [
     text: "Cookieポリシー",
   },
   {
-    href: "https://astro-news-six.vercel.app/rss.xml",
+    href: "https://genin753.github.io/rss.xml",
     text: "RSS",
   },
   {
-    href: "https://astro-news-six.vercel.app/sitemap-index.xml",
+    href: "https://genin753.github.io/sitemap-index.xml",
     text: "サイトマップ",
   },
 ];
