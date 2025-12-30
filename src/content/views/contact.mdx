@@ -1,0 +1,31 @@
+---
+title: "連絡"
+description: "筆者への連絡フォーム"
+blocks:
+  - name: "HEADER"
+    title: "連絡フォーム"
+---
+
+<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdHRHw5mUTvEmw8lS3VtSufyK95y_S6kSh6hgW2Qlnu82sInA/formResponse" target="hidden_iframe" method="post" onsubmit="submitted=true;">
+  <div class="mb-4">
+    <label class="block mb-1">名前（表示名）</label>
+    <input name="entry.1367798313" placeholder="名前" value="名無し" type="text" required class="input input-bordered w-full" />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">メールアドレス（返信希望者のみ）</label>
+    <input name="entry.1435705706" placeholder="メールアドレス" type="email" class="input input-bordered w-full" />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-1">メッセージ</label>
+    <textarea name="entry.940928982" placeholder="メッセージ" rows="8" maxlength="400" required class="textarea textarea-bordered w-full"></textarea>
+  </div>
+  <div class="flex justify-center">
+    <button type="submit" class="btn btn-primary">送信</button>
+  </div>
+</form>
+
+<script>
+  let submitted = false;
+</script>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none" onload="if(submitted){window.location='/' }"></iframe>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+import { getEntry, getCollection } from "astro:content";
+
+const entry = await getEntry("views", "search");
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+// Get all articles for client-side search
+const articles = await getCollection("articles");
+
+// Get all categories to resolve references
+const categories = await getCollection("categories");
+const categoryMap = new Map(categories.map((cat) => [cat.id, cat.data.title]));
+
+const searchData = articles
+  .filter((article) => !article.data.isDraft)
+  .map((article) => {
+    const categoryId = typeof article.data.category === "string" 
+      ? article.data.category 
+      : article.data.category?.id;
+    
+    return {
+      slug: article.slug,
+      title: article.data.title,
+      description: article.data.description,
+      category: categoryMap.get(categoryId) || categoryId || "Uncategorized",
+      url: `/articles/${article.slug}`,
+    };
+  });
+---
+
+<BaseLayout entry={entry}>
+  <div class="container py-4">
+    <div class="form-control w-full">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search articles..."
+        class="input input-bordered w-full"
+        autocomplete="off"
+      />
+    </div>
+
+    <div id="results" class="mt-8"></div>
+
+    <script define:vars={{ searchData }}>
+      const searchInput = document.getElementById("searchInput");
+      const resultsContainer = document.getElementById("results");
+
+      function displayResults(results) {
+        if (results.length === 0) {
+          resultsContainer.innerHTML =
+            '<p class="text-center text-gray-500">No articles found.</p>';
+          return;
+        }
+
+        const html = results
+          .map(
+            (article) => `
+          <div class="card bg-base-100 shadow-md mb-4 hover:shadow-lg transition-shadow">
+            <div class="card-body">
+              <h2 class="card-title">${article.title}</h2>
+              <p class="text-sm text-gray-600">${article.description || ""}</p>
+              <p class="text-xs text-primary">${article.category}</p>
+              <div class="card-actions justify-end">
+                <a href="${article.url}" class="btn btn-primary btn-sm">
+                  Read More
+                </a>
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        resultsContainer.innerHTML = html;
+      }
+
+      function search(query) {
+        if (!query.trim()) {
+          resultsContainer.innerHTML = "";
+          return;
+        }
+
+        const lowerQuery = query.toLowerCase();
+        const results = searchData.filter((article) => {
+          return (
+            article.title.toLowerCase().includes(lowerQuery) ||
+            (article.description &&
+              article.description.toLowerCase().includes(lowerQuery)) ||
+            article.category.toLowerCase().includes(lowerQuery)
+          );
+        });
+
+        displayResults(results);
+      }
+
+      searchInput.addEventListener("input", (e) => {
+        const query = e.target.value;
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+
+        if (query) {
+          params.set("q", query);
+          window.history.replaceState({}, "", `${url.pathname}?${params}`);
+          search(query);
+        } else {
+          params.delete("q");
+          window.history.replaceState({}, "", `${url.pathname}`);
+          resultsContainer.innerHTML = "";
+        }
+      });
+
+      // Restore search from URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get("q");
+      if (query) {
+        searchInput.value = query;
+        search(query);
+      }
+    </script>
+  </div>
+</BaseLayout>
