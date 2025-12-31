@@ -1,106 +1,62 @@
-# オルカンアカデミー �
+# オルカンアカデミー
 
-投資初心者のための脳死投資講座
-
-> **ℹ️ Info**  
-> オルカンアカデミー is my first open-source project, so there may be some bugs or issues. I'll address them as quickly as possible.
+投資初心者のための「脳死投資」入門サイト。シンプルな記事構成とレスポンシブなニュースレイアウトで学びやすさを重視しています。
 
 ![オルカンアカデミー](./src/assets/images/screenshot-astronews.png "オルカンアカデミー")
+![Performances](./src/assets/images/Performances.png "Performances")
 
-![performances](./src/assets/images/Performances.png "Performances")
+## デモ
 
-## 🌐 Demo
+- 本番環境: [Live Demo](https://astro-news-six.vercel.app/)
 
-Explore the live demo here: [**Live Demo**](https://astro-news-six.vercel.app/)
+## セットアップ
 
-## 🚀 Installation
-
-Follow the steps below to set up and run the project locally:
-
-### Clone the Repository
+前提: Bun が使える環境（Bun 1.2系推奨）。
 
 ```bash
 git clone https://github.com/Mrahmani71/astro-news.git
-```
-
-### Install Dependencies
-
-``` bash
+cd astro-news
 bun install
-```
-
-### Run Development Server
-
-```bash
 bun dev
 ```
 
-### Running Keystatic CMS
+### Keystatic CMS を使う場合
 
-1. Rename `.env.example` to `.env`.
+1. `.env.example` を `.env` にリネーム。
+2. `RUN_KEYSTATIC=true` をセット。
+3. サーバー起動: `bun dev`
+4. `http://localhost:4321/keystatic` にアクセス。
 
-2. Set `RUN_KEYSTATIC=true`.
+## いまある機能
 
-3. Start the development server:
+- コンテンツレイヤーと Keystatic CMS 連携
+- ナビゲーション、レスポンシブ対応
+- ページネーションと検索
+- RSS / サイトマップ生成
+- ダークモード
+- 簡易 SEO 対応
 
- ```bash
-    bun dev 
-  ```
+## 技術スタック
 
-4. Open `http://localhost:4321/keystatic` in your browser.
+- Astro 5.7 / TypeScript / MDX
+- Tailwind CSS + DaisyUI
+- Bun 1.2.10
+- Keystatic
+- Vercel
+- HugeIcons
 
-## ✨ Features
-
-### Implemented Features
-
-- Content Layer
-- Keystatic CMS
-- Navigation
-- Responsive Design
-- Pagination
-- Search Functionality
-- RSS Feed
-- Sitemap
-- Dark Mode
-- SEO Optimization (~)
-
-### Upcoming Features
-
-- Open Graph (OG) Image Generation
-
-## 💻 Technologies
-
-This project leverages cutting-edge web technologies:
-
-- [Astro V5.7](https://astro.build) - Modern static site builder
-- [KeyStatic](https://keystatic.com) - Headless content-management system
-- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
-- [DaisyUI](https://daisyui.com/) - Tailwind CSS component library
-- [TypeScript](https://typescriptlang.org) - Typed JavaScript
-- [MDX](https://mdxjs.com) - Markdown with JSX support
-- [Bun V1.2.10](https://bun.sh) - Fast JavaScript runtime
-- [Vercel](https://vercel.com) - Deployment platform
-- [HugeIcons](https://hugeicons.com) - Icon library
-
-## 💡  Inspirations and Code Concepts
-
-This project draws inspiration from the following sources:
-
-### Designs
+## インスピレーション
 
 - [BBC News](https://www.bbc.com)
 - [NewsHub - News Website](https://dribbble.com/shots/21678041-NewsHub-News-Website)
 - [Let'sread - News Landing Page](https://dribbble.com/shots/24675325-Let-sread-News-Landing-Page)
-
-### Articles
-
 - [Creating A Pagination Component With Astro](https://rimdev.io/creating-a-pagination-component-with-astro)
 - [Adding search to static Astro sites](https://website-thomas-astro.vercel.app/blog/search-static-astro-website)
 
-## 📄 License
+## ライセンス
 
-Open sourced under the [MIT license](LICENSE.md).
+MIT License（詳細は [LICENSE.md](LICENSE.md)）。
 
-## 🤝 Contributing
+## コントリビュート
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Mrahmani71/astro-news/issues).
+Issue / PR 歓迎です。気づいたことがあれば遠慮なくどうぞ。
