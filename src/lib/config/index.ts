@@ -55,11 +55,11 @@ export const OTHER_LINKS: Link[] = [
     text: "Cookieポリシー",
   },
   {
-    href: "https://genin753.github.io/rss.xml",
+    href: "/rss.xml",
     text: "RSS",
   },
   {
-    href: "https://genin753.github.io/sitemap-index.xml",
+    href: "/sitemap-index.xml",
     text: "サイトマップ",
   },
 ];
