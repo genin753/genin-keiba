@@ -1,6 +1,7 @@
 {
-  "name": "オルカンアカデミー",
-  "short_name": "オルカンアカデミー",
+  "name": "重賞予想ラボ",
+  "short_name": "重賞予想ラボ",
+  "description": "中央競馬の重賞レースを毎週予想。データ分析と独自指数による穴馬発掘で回収率100%超えを目指すブログ。",
   "icons": [
     {
       "src": "/genin.jpg",
@@ -15,7 +16,9 @@
       "purpose": "any"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1a5c2c",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }

@@ -28,11 +28,16 @@ const OGImage = new URL(meta.ogImage, Astro.url).href;
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
 
+  <!-- Google Fonts - 明朝体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet" />
+
   <!-- Favicons -->
   <link rel="icon" type="image/jpeg" href="/genin.jpg" />
   <link rel="shortcut icon" href="/genin.jpg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/genin.jpg" />
-  <meta name="apple-mobile-web-app-title" content="オルカンアカデミー" />
+  <meta name="apple-mobile-web-app-title" content="重賞予想ラボ" />
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- RSS & Sitemap -->
@@ -51,6 +56,7 @@ const OGImage = new URL(meta.ogImage, Astro.url).href;
   <title>{meta.title}</title>
   <meta name="title" content={meta.metaTitle} />
   <meta name="description" content={meta.description} />
+  <meta name="keywords" content={SITE.keywords} />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content={meta.type} />
@@ -59,6 +65,8 @@ const OGImage = new URL(meta.ogImage, Astro.url).href;
   <meta property="og:description" content={meta.description} />
   <meta property="og:image" content={OGImage} />
   <meta property="og:image:alt" content={meta.ogImageAlt} />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content={SITE.title} />
 
   <!-- Twitter -->
   <meta property="twitter:site" content={Astro.site} />
@@ -93,6 +101,41 @@ const OGImage = new URL(meta.ogImage, Astro.url).href;
       </>
     ) : null
   }
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": SITE.title,
+    "description": SITE.description,
+    "url": SITE.url,
+    "inLanguage": "ja-JP",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${SITE.url}search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  })} />
+
+  {isArticleMeta(meta) && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": meta.metaTitle,
+      "description": meta.description,
+      "image": OGImage,
+      "datePublished": new Date(meta.publishedTime).toISOString(),
+      "dateModified": new Date(meta.lastModified).toISOString(),
+      "author": meta.authors.map(author => ({
+        "@type": "Person",
+        "name": author.name
+      })),
+      "publisher": {
+        "@type": "Organization",
+        "name": SITE.title
+      }
+    })} />
+  )}
 
   <ClientRouter />
 </head>

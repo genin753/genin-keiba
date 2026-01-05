@@ -1,20 +1,43 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes: false;
   root: ":root";
   logs: false;
 }
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* 東スポ風ギラギラテーマ */
+:root {
+  /* Primary Colors - 派手な黄色とゴールド */
+  --color-primary: #FFD700;
+  --color-primary-content: #1a1a1a;
+  
+  /* Secondary - 鮮やかな赤 */
+  --color-secondary: #FF0000;
+  --color-secondary-content: #ffffff;
+  
+  /* Accent - シアン/水色 */
+  --color-accent: #00BFFF;
+  --color-accent-content: #1a1a1a;
+  
+  /* Base Colors */
+  --color-base-100: #1a1a1a;
+  --color-base-200: #2d2d2d;
+  --color-base-300: #3d3d3d;
+  --color-base-content: #ffffff;
+  
+  /* Info/Success/Warning/Error */
+  --color-info: #00BFFF;
+  --color-success: #00FF00;
+  --color-warning: #FFD700;
+  --color-error: #FF0000;
+}
 
 @theme {
-  /* Font Family */
-  --font-sans: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, Cambria,
-    "Times New Roman", Times, serif;
-
+  /* Font Family - 明朝体 */
+  --font-sans: "Noto Serif JP", "Hiragino Mincho ProN", "ヒラギノ明朝 ProN", "Yu Mincho", "游明朝", "MS Mincho", serif;
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "ヒラギノ明朝 ProN", "Yu Mincho", "游明朝", serif;
+  
   --breakpoint-2xl: initial;
 }
 
@@ -22,30 +45,68 @@
   :root {
     @apply cursor-default;
   }
+  
   html {
     @apply h-full text-[16px];
   }
 
   @media (min-width: 1024px) {
     html {
-      @apply text-[17px];
+      @apply text-[18px];
     }
   }
 
   body {
     @apply font-sans antialiased h-full;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    color: #ffffff;
   }
 
-  h1,
+  /* 見出しを派手に */
+  h1 {
+    @apply font-sans font-black;
+    color: #FFD700;
+    text-shadow: 
+      3px 3px 0 #FF0000,
+      -1px -1px 0 #FF0000,
+      1px -1px 0 #FF0000,
+      -1px 1px 0 #FF0000;
+  }
+  
   h2 {
-    @apply font-serif;
+    @apply font-sans font-bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #FF0000;
+  }
+  
+  h3, h4, h5, h6 {
+    @apply font-sans font-bold;
+    color: #00BFFF;
+  }
+
+  a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  a:hover {
+    color: #FF0000;
+    text-shadow: 0 0 10px #FFD700;
   }
 
   small,
   time {
     @apply text-sm;
+    color: #00BFFF;
   }
+  
   .prose {
+    --tw-prose-body: #ffffff;
+    --tw-prose-headings: #FFD700;
+    --tw-prose-links: #FFD700;
+    --tw-prose-bold: #FF0000;
+    
     pre {
       code {
         span,
@@ -70,6 +131,79 @@
 
 @layer components {
   .a-01 {
-    @apply hover:underline decoration-primary;
+    @apply hover:underline;
+    text-decoration-color: #FF0000;
+  }
+  
+  /* ギラギラボタン */
+  .btn-primary {
+    background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+    color: #1a1a1a;
+    font-weight: 900;
+    border: 3px solid #FF0000;
+    text-shadow: none;
+    box-shadow: 0 4px 0 #8B0000, 0 6px 10px rgba(0,0,0,0.5);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(180deg, #FFFF00 0%, #FFD700 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #8B0000, 0 8px 15px rgba(0,0,0,0.5);
+  }
+  
+  /* カード */
+  .card {
+    background: linear-gradient(145deg, #2d2d2d 0%, #1a1a1a 100%);
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  
+  .card:hover {
+    border-color: #FF0000;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  }
+  
+  /* ヘッダー */
+  .header-gira {
+    background: linear-gradient(90deg, #FF0000 0%, #FFD700 50%, #FF0000 100%);
+    border-bottom: 4px solid #FFD700;
+  }
+  
+  /* フッター */
+  .footer-gira {
+    background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+    border-top: 4px solid #FFD700;
+  }
+  
+  /* バッジ */
+  .badge-hot {
+    background: linear-gradient(180deg, #FF0000 0%, #8B0000 100%);
+    color: #FFD700;
+    font-weight: 900;
+    animation: pulse-glow 1.5s infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px #FF0000;
+    }
+    50% {
+      box-shadow: 0 0 20px #FF0000, 0 0 30px #FFD700;
+    }
+  }
+  
+  /* 的中！バナー */
+  .banner-win {
+    background: linear-gradient(90deg, #FFD700 0%, #FFFF00 50%, #FFD700 100%);
+    color: #FF0000;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 0 #000;
+    animation: flash-banner 0.5s infinite alternate;
+  }
+  
+  @keyframes flash-banner {
+    from { opacity: 1; }
+    to { opacity: 0.8; }
   }
 }

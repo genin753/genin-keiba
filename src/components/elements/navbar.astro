@@ -3,10 +3,39 @@ import { NAVIGATION_LINKS } from "@/lib/config";
 import NavbarItem from "../bases/navbar-item.astro";
 ---
 
-<nav class="navbar-center hidden lg:flex container">
-  <ul class="menu menu-sm menu-horizontal px-1 mx-auto">
-    <NavbarItem item={{ href: "/", text: "ホーム" }} />
-    <NavbarItem item={{ href: "/articles", text: "最新記事" }} />
-    {NAVIGATION_LINKS.map((item) => <NavbarItem item={item} />)}
+<nav 
+  class="navbar-center hidden lg:flex container py-2"
+  style="background: rgba(0,0,0,0.8);"
+>
+  <ul class="menu menu-sm menu-horizontal px-1 mx-auto gap-4">
+    <li>
+      <a 
+        href="/" 
+        class="font-bold text-base"
+        style="color: #FFD700; text-shadow: 1px 1px 0 #FF0000;"
+      >
+        🏠 ホーム
+      </a>
+    </li>
+    <li>
+      <a 
+        href="/articles" 
+        class="font-bold text-base"
+        style="color: #FFD700; text-shadow: 1px 1px 0 #FF0000;"
+      >
+        📰 最新記事
+      </a>
+    </li>
+    {NAVIGATION_LINKS.map((item) => (
+      <li>
+        <a 
+          href={item.href} 
+          class="font-bold text-base"
+          style="color: #00BFFF; text-shadow: 1px 1px 0 #000;"
+        >
+          {item.text}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>

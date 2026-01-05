@@ -1,12 +1,13 @@
 import type { Link } from "../types";
 
 export const SITE = {
-  title: "オルカンアカデミー",
-  description: "投資初心者のための脳死投資講座",
-  author: "Mohammad Rahmani",
+  title: "重賞予想ラボ",
+  description: "中央競馬の重賞レースを毎週予想。データ分析と独自指数による穴馬発掘で回収率100%超えを目指すブログ。G1・G2・G3の買い目を無料公開中。",
+  keywords: "競馬予想,重賞予想,G1予想,穴馬,回収率,競馬データ分析,中央競馬,JRA,買い目公開,競馬ブログ",
+  author: "genin753",
   url: "https://genin753.github.io/",
   github: "https://github.com/genin753/genin753.github.io",
-  locale: "en-US",
+  locale: "ja-JP",
   dir: "ltr",
   charset: "UTF-8",
   basePath: "/",
@@ -15,24 +16,16 @@ export const SITE = {
 
 export const NAVIGATION_LINKS: Link[] = [
   {
-    href: "/categories/orkan-today",
-    text: "オルカン速報",
+    href: "/categories/prediction",
+    text: "今週の予想",
   },
   {
-    href: "/categories/nisa-guide",
-    text: "新NISA解説",
+    href: "/categories/result",
+    text: "レース回顧",
   },
   {
-    href: "/categories/beginner-guide",
-    text: "初心者ガイド",
-  },
-  {
-    href: "/categories/investment-style",
-    text: "投資の流儀",
-  },
-  {
-    href: "/categories/general-finance",
-    text: "金融全般",
+    href: "/categories/data",
+    text: "データ分析",
   },
 ];
 

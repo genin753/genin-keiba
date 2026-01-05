@@ -12,7 +12,17 @@ import pagefind from "astro-pagefind";
 
 const { RUN_KEYSTATIC } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
-const integrations = [mdx(), sitemap()];
+const integrations = [
+  mdx(),
+  sitemap({
+    // SEO最適化: 更新頻度と優先度のカスタマイズ
+    changefreq: "weekly",
+    priority: 0.7,
+    lastmod: new Date(),
+    // 除外パターン（不要なページを除外）
+    filter: (page) => !page.includes("/404") && !page.includes("/search"),
+  }),
+];
 
 if (RUN_KEYSTATIC === "true") {
   integrations.push(react());
