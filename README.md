@@ -1,62 +1,35 @@
-# オルカンアカデミー
+# 重賞予想ラボ 🏇
 
-投資初心者のための「脳死投資」入門サイト。シンプルな記事構成とレスポンシブなニュースレイアウトで学びやすさを重視しています。
+中央競馬の重賞レースを毎週予想するブログ。データ分析と独自指数で穴馬を発掘し、回収率100%超えを目指します。
 
-![オルカンアカデミー](./src/assets/images/screenshot-astronews.png "オルカンアカデミー")
-![Performances](./src/assets/images/Performances.png "Performances")
+## サイト
 
-## デモ
-
-- 本番環境: [Live Demo](https://astro-news-six.vercel.app/)
+- 本番環境: [https://genin753.github.io/](https://genin753.github.io/)
 
 ## セットアップ
 
-前提: Bun が使える環境（Bun 1.2系推奨）。
-
 ```bash
-git clone https://github.com/Mrahmani71/astro-news.git
-cd astro-news
-bun install
-bun dev
+git clone https://github.com/genin753/genin753.github.io.git
+cd genin753.github.io
+npm install
+npm run dev
 ```
 
-### Keystatic CMS を使う場合
+## 機能
 
-1. `.env.example` を `.env` にリネーム。
-2. `RUN_KEYSTATIC=true` をセット。
-3. サーバー起動: `bun dev`
-4. `http://localhost:4321/keystatic` にアクセス。
-
-## いまある機能
-
-- コンテンツレイヤーと Keystatic CMS 連携
-- ナビゲーション、レスポンシブ対応
-- ページネーションと検索
-- RSS / サイトマップ生成
-- ダークモード
-- 簡易 SEO 対応
+- 📰 重賞レース予想記事
+- 📊 データ分析・傾向分析
+- 🔍 記事検索
+- 📡 RSS配信
+- 🗺️ サイトマップ自動生成
+- 🌙 ダークモード
 
 ## 技術スタック
 
-- Astro 5.7 / TypeScript / MDX
+- Astro 5 / TypeScript / MDX
 - Tailwind CSS + DaisyUI
-- Bun 1.2.10
-- Keystatic
-- Vercel
-- HugeIcons
-
-## インスピレーション
-
-- [BBC News](https://www.bbc.com)
-- [NewsHub - News Website](https://dribbble.com/shots/21678041-NewsHub-News-Website)
-- [Let'sread - News Landing Page](https://dribbble.com/shots/24675325-Let-sread-News-Landing-Page)
-- [Creating A Pagination Component With Astro](https://rimdev.io/creating-a-pagination-component-with-astro)
-- [Adding search to static Astro sites](https://website-thomas-astro.vercel.app/blog/search-static-astro-website)
+- Pagefind（検索）
 
 ## ライセンス
 
-MIT License（詳細は [LICENSE.md](LICENSE.md)）。
-
-## コントリビュート
-
-Issue / PR 歓迎です。気づいたことがあれば遠慮なくどうぞ。
+MIT License
