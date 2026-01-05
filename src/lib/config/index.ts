@@ -5,7 +5,7 @@ export const SITE = {
   description: "中央競馬の重賞レースを毎週予想。データ分析と独自指数による穴馬発掘で回収率100%超えを目指すブログ。G1・G2・G3の買い目を無料公開中。",
   keywords: "競馬予想,重賞予想,G1予想,穴馬,回収率,競馬データ分析,中央競馬,JRA,買い目公開,競馬ブログ",
   author: "genin753",
-  url: "https://genin753.github.io/",
+  url: "https://keiba-g1club.vercel.app",
   github: "https://github.com/genin753/genin753.github.io",
   locale: "ja-JP",
   dir: "ltr",
