@@ -14,25 +14,15 @@ export async function GET(context) {
   );
 
   return rss({
-    // SEO最適化: タイトルとサブタイトル
-    title: `${SITE.title} - 競馬予想RSS`,
+    title: SITE.title,
     description: SITE.description,
     site: context.site,
-    // 言語設定（SEO重要）
-    language: "ja",
-    // カスタムXMLネームスペース（拡張メタデータ用）
-    xmlns: {
-      atom: "http://www.w3.org/2005/Atom",
-    },
-    // 自己参照リンク（SEOベストプラクティス）
-    customData: `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
     items: sortedArticles.map((article) => ({
       title: article.data.title,
       pubDate: new Date(article.data.publishedTime),
       description: article.data.description,
       link: `/articles/${article.id}/`,
-      // カテゴリー追加（SEO: コンテンツ分類）
-      categories: ["競馬予想", "重賞", article.data.category],
     })),
+    customData: `<language>ja</language>`,
   });
 }
