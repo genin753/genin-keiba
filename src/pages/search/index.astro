@@ -24,11 +24,11 @@ const searchData = articles
         : article.data.category?.id;
 
     return {
-      slug: article.slug,
+      slug: article.id,
       title: article.data.title,
       description: article.data.description,
       category: categoryMap.get(categoryId) || categoryId || "Uncategorized",
-      url: `/articles/${article.slug}`,
+      url: `/articles/${article.id}`,
     };
   });
 ---
@@ -48,80 +48,94 @@ const searchData = articles
     <div id="results" class="mt-8"></div>
 
     <script define:vars={{ searchData }}>
-      const searchInput = document.getElementById("searchInput");
-      const resultsContainer = document.getElementById("results");
+      function initSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const resultsContainer = document.getElementById("results");
 
-      function displayResults(results) {
-        if (results.length === 0) {
-          resultsContainer.innerHTML =
-            '<p class="text-center text-gray-500">No articles found.</p>';
-          return;
-        }
+        if (!searchInput || !resultsContainer) return;
 
-        const html = results
-          .map(
-            (article) => `
-          <div class="card bg-base-100 shadow-md mb-4 hover:shadow-lg transition-shadow">
-            <div class="card-body">
-              <h2 class="card-title">${article.title}</h2>
-              <p class="text-sm text-gray-600">${article.description || ""}</p>
-              <p class="text-xs text-primary">${article.category}</p>
-              <div class="card-actions justify-end">
-                <a href="${article.url}" class="btn btn-primary btn-sm">
-                  詳しく読む
-                </a>
+        function displayResults(results) {
+          if (results.length === 0) {
+            resultsContainer.innerHTML =
+              '<p class="text-center text-gray-500">No articles found.</p>';
+            return;
+          }
+
+          const html = results
+            .map(
+              (article) => `
+            <div class="card bg-base-100 shadow-md mb-4 hover:shadow-lg transition-shadow">
+              <div class="card-body">
+                <h2 class="card-title">${article.title}</h2>
+                <p class="text-sm text-gray-600">${article.description || ""}</p>
+                <p class="text-xs text-primary">${article.category}</p>
+                <div class="card-actions justify-end">
+                  <a href="${article.url}" class="btn btn-primary btn-sm">
+                    詳しく読む
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        `,
-          )
-          .join("");
+          `,
+            )
+            .join("");
 
-        resultsContainer.innerHTML = html;
-      }
-
-      function search(query) {
-        if (!query.trim()) {
-          resultsContainer.innerHTML = "";
-          return;
+          resultsContainer.innerHTML = html;
         }
 
-        const lowerQuery = query.toLowerCase();
-        const results = searchData.filter((article) => {
-          return (
-            article.title.toLowerCase().includes(lowerQuery) ||
-            (article.description &&
-              article.description.toLowerCase().includes(lowerQuery)) ||
-            article.category.toLowerCase().includes(lowerQuery)
-          );
+        function search(query) {
+          if (!query.trim()) {
+            resultsContainer.innerHTML = "";
+            return;
+          }
+
+          const lowerQuery = query.toLowerCase();
+          const results = searchData.filter((article) => {
+            return (
+              article.title.toLowerCase().includes(lowerQuery) ||
+              (article.description &&
+                article.description.toLowerCase().includes(lowerQuery)) ||
+              article.category.toLowerCase().includes(lowerQuery)
+            );
+          });
+
+          displayResults(results);
+        }
+
+        // Remove existing listeners to avoid duplicates
+        const newInput = searchInput.cloneNode(true);
+        searchInput.parentNode.replaceChild(newInput, searchInput);
+
+        newInput.addEventListener("input", (e) => {
+          const query = e.target.value;
+          const url = new URL(window.location.href);
+          const params = new URLSearchParams(url.search);
+
+          if (query) {
+            params.set("q", query);
+            window.history.replaceState({}, "", `${url.pathname}?${params}`);
+            search(query);
+          } else {
+            params.delete("q");
+            window.history.replaceState({}, "", `${url.pathname}`);
+            resultsContainer.innerHTML = "";
+          }
         });
 
-        displayResults(results);
-      }
-
-      searchInput.addEventListener("input", (e) => {
-        const query = e.target.value;
-        const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.search);
-
+        // Restore search from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get("q");
         if (query) {
-          params.set("q", query);
-          window.history.replaceState({}, "", `${url.pathname}?${params}`);
+          newInput.value = query;
           search(query);
-        } else {
-          params.delete("q");
-          window.history.replaceState({}, "", `${url.pathname}`);
-          resultsContainer.innerHTML = "";
         }
-      });
-
-      // Restore search from URL params
-      const urlParams = new URLSearchParams(window.location.search);
-      const query = urlParams.get("q");
-      if (query) {
-        searchInput.value = query;
-        search(query);
       }
+
+      // Initial load
+      initSearch();
+
+      // Re-init after View Transitions navigation
+      document.addEventListener("astro:page-load", initSearch);
     </script>
   </div>
 </BaseLayout>
