@@ -27,6 +27,10 @@ export const NAVIGATION_LINKS: Link[] = [
     href: "/categories/data",
     text: "競馬全般",
   },
+  {
+    href: "/categories/glossary",
+    text: "競馬用語解説",
+  },
 ];
 
 export const OTHER_LINKS: Link[] = [
