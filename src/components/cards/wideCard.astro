@@ -1,8 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { getDateDistance, normalizeDate } from "@/lib/utils/date";
+import { normalizeDate } from "@/lib/utils/date";
 import Divider from "../bases/divider.astro";
+import RelativeTime from "@/components/elements/RelativeTime";
 
 type Props = {
   article: CollectionEntry<"articles">;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const { article, isLast } = Astro.props;
+const publishedTimeISO = normalizeDate(article.data.publishedTime);
 ---
 
 <li
@@ -18,17 +20,7 @@ const { article, isLast } = Astro.props;
   <div
     class="flex-shrink-0 aspect-square w-32 text-sm text-base-content/60 text-pretty capitalize hidden lg:flex pt-1"
   >
-    {
-      (() => {
-        const date = article.data.publishedTime;
-        const dateStr = date instanceof Date ? date.toISOString() : date;
-        try {
-          return dateStr ? getDateDistance(dateStr) : "日付不明";
-        } catch {
-          return "日付不明";
-        }
-      })()
-    }
+    <RelativeTime client:load date={publishedTimeISO} />
   </div>
   <div
     class:list={[
@@ -63,19 +55,7 @@ const { article, isLast } = Astro.props;
         class="flex items-center gap-1"
         datetime={normalizeDate(article.data.publishedTime)}
       >
-        <span>
-          {
-            (() => {
-              const date = article.data.publishedTime;
-              const dateStr = date instanceof Date ? date.toISOString() : date;
-              try {
-                return dateStr ? getDateDistance(dateStr) : "日付不明";
-              } catch {
-                return "日付不明";
-              }
-            })()
-          }
-        </span>
+        <RelativeTime client:load date={publishedTimeISO} />
       </time>
       <Divider />
       <small class="flex items-center gap-1">

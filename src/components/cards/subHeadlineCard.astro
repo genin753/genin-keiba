@@ -3,8 +3,9 @@ import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Divider from "@/components/bases/divider.astro";
 import { render } from "astro:content";
-import { getDateDistance } from "@/lib/utils/date";
+import { normalizeDate } from "@/lib/utils/date";
 import { categoriesHandler } from "@/lib/handlers/categories";
+import RelativeTime from "@/components/elements/RelativeTime";
 
 type Props = {
   article: CollectionEntry<"articles">;
@@ -15,6 +16,7 @@ const { article, isLast, isFirst } = Astro.props;
 
 const { remarkPluginFrontmatter } = await render(article);
 const category = categoriesHandler.oneCategory(article.data.category.id);
+const publishedTimeISO = normalizeDate(article.data.publishedTime);
 ---
 
 <article
@@ -44,19 +46,7 @@ const category = categoriesHandler.oneCategory(article.data.category.id);
       <span class="text-primary dark:text-secondary">{category.data.title}</span
       >
       <Divider />
-      <span>
-        {
-          (() => {
-            const date = article.data.publishedTime;
-            const dateStr = date instanceof Date ? date.toISOString() : date;
-            try {
-              return dateStr ? getDateDistance(dateStr) : "日付不明";
-            } catch {
-              return "日付不明";
-            }
-          })()
-        }
-      </span>
+      <RelativeTime client:load date={publishedTimeISO} />
     </div>
   </div>
 

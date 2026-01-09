@@ -22,10 +22,10 @@ const integrations = [
     // 除外パターン（不要なページを除外）
     filter: (page) => !page.includes("/404") && !page.includes("/search"),
   }),
+  react(), // React is always needed for components like RelativeTime
 ];
 
 if (RUN_KEYSTATIC === "true") {
-  integrations.push(react());
   integrations.push(keystatic());
 }
 
