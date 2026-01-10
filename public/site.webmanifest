@@ -4,15 +4,15 @@
   "description": "中央競馬の重賞レースを毎週予想。データ分析と独自指数による穴馬発掘で回収率100%超えを目指すブログ。",
   "icons": [
     {
-      "src": "/icon.jpg",
+      "src": "/favicon.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon.jpg",
+      "src": "/favicon.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
