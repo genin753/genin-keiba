@@ -1,7 +1,7 @@
 import { render, type CollectionEntry } from "astro:content";
 import { authorsHandler } from "@/lib/handlers/authors";
 import { SITE } from "@/lib/config";
-import defaultImage from "@/assets/images/icon.jpg";
+import defaultImage from "@/assets/images/favicon.png";
 import type { ArticleMeta, Meta } from "@/lib/types";
 import { capitalizeFirstLetter } from "@/lib/utils/letter";
 import { normalizeDate } from "@/lib/utils/date";
