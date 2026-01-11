@@ -1,18 +1,16 @@
 ---
 import Search01 from "@/assets/svgs/search-01.astro";
+import NewTwitter from "@/assets/svgs/new-twitter.astro";
 import MenuDropdown from "./menu-dropdown.astro";
 import { SITE } from "@/lib/config";
 import ThemeController from "../bases/theme-controller.astro";
 ---
 
-<div
-  class="navbar"
-  style="background: transparent;"
->
+<div class="navbar" style="background: transparent;">
   <div class="navbar-start lg:w-1/2">
     <MenuDropdown />
-    <a 
-      class="text-xl px-2 text-nowrap lg:hidden font-black" 
+    <a
+      class="text-xl px-2 text-nowrap lg:hidden font-black"
       href="/"
       style="color: #1a1a1a; text-shadow: 2px 2px 0 #FFD700, -1px -1px 0 #FFD700, 1px -1px 0 #FFD700, -1px 1px 0 #FFD700;"
     >
@@ -20,8 +18,8 @@ import ThemeController from "../bases/theme-controller.astro";
     </a>
   </div>
   <div class="navbar-center hidden lg:flex">
-    <a 
-      class="text-2xl px-2 font-black tracking-wider" 
+    <a
+      class="text-2xl px-2 font-black tracking-wider"
       href="/"
       style="color: #1a1a1a; text-shadow: 3px 3px 0 #FFD700, -1px -1px 0 #FFD700, 1px -1px 0 #FFD700, -1px 1px 0 #FFD700;"
     >
@@ -29,9 +27,19 @@ import ThemeController from "../bases/theme-controller.astro";
     </a>
   </div>
   <div class="navbar-end">
-    <a 
-      class="btn btn-ghost btn-circle" 
-      href="/search" 
+    <a
+      class="btn btn-ghost btn-circle"
+      href="https://x.com/GeninKeiba"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="X (Twitter)"
+      style="color: #1a1a1a;"
+    >
+      <NewTwitter />
+    </a>
+    <a
+      class="btn btn-ghost btn-circle"
+      href="/search"
       aria-label="Search"
       style="color: #1a1a1a;"
     >
