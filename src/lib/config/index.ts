@@ -24,6 +24,10 @@ export const NAVIGATION_LINKS: Link[] = [
     text: "重賞レース回顧",
   },
   {
+    href: "/categories/chihou",
+    text: "地方競馬",
+  },
+  {
     href: "/categories/data",
     text: "競馬全般",
   },
